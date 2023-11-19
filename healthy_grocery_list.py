@@ -1,14 +1,16 @@
 class HealthyGroceryList:
     def __init__(self):
-        self.protein_sources = []
-        self.vegetables = []
-        self.fruits = []
-        self.healthy_fats = []
-        self.legumes = []
-        self.carbohydrates = []
-        self.drinks = []
+        # Initialize lists for different categories of groceries
+        self.protein_sources = []      # List to store protein sources
+        self.vegetables = []           # List to store vegetables
+        self.fruits = []               # List to store fruits
+        self.healthy_fats = []         # List to store healthy fats
+        self.legumes = []              # List to store legumes
+        self.carbohydrates = []        # List to store carbohydrates
+        self.drinks = []               # List to store drinks
 
     def check_healthiness(self):
+        # Conditions for a healthy grocery list
         protein_condition = len(self.protein_sources) >= 4 and len(
             [source for source in self.protein_sources if "plant" in source.lower()]) >= 2
         vegetable_condition = len(self.vegetables) >= 7
@@ -19,6 +21,7 @@ class HealthyGroceryList:
             self.carbohydrates) >= 3
         drinks_condition = all("sugar" not in drink.lower() for drink in self.drinks) and len(self.drinks) <= 2
 
+        # Combined conditions to check overall healthiness
         conditions_met = (
                 protein_condition
                 and vegetable_condition
@@ -31,6 +34,7 @@ class HealthyGroceryList:
         return conditions_met
 
     def add_to_list(self, category, item):
+        # Method to add items to the appropriate grocery category
         if category.lower() == "protein":
             self.protein_sources.append(item)
         elif category.lower() == "vegetable":
@@ -46,4 +50,5 @@ class HealthyGroceryList:
         elif category.lower() == "drink":
             self.drinks.append(item)
         else:
+            # Print a message for unknown categories
             print(f"Unknown category: {category}. Item '{item}' not added.")
